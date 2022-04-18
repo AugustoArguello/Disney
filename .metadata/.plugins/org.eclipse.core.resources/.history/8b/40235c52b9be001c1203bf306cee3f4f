@@ -1,0 +1,74 @@
+package springboot.disney.peliculas.models.Service;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import springboot.disney.peliculas.models.Dao.DaoPeliculas;
+import springboot.disney.peliculas.models.Entity.Peliculas;
+import springboot.disney.personaje.model.entity.Personajes;
+
+@Service
+public class ImplService implements IntfService {
+	
+	@Autowired
+	private DaoPeliculas dao;
+
+	@Override
+	@Transactional
+	public List<Peliculas> findall() {
+		return (List<Peliculas>) dao.findAll();
+	}
+
+	@Override
+	@Transactional
+	public void delete(Integer id) {
+		dao.deleteById(id);
+		
+	}
+
+	@Override
+	@Transactional
+	public Peliculas edit(int id, Peliculas pel, MultipartFile foto) {
+		Peliculas peltemp = dao.findById(id).orElse(null);
+		peltemp.setTitulo(pel.getTitulo());
+		peltemp.setFechaCreacion(pel.getFechaCreacion());
+		peltemp.setCalificacion(pel.getCalificacion());
+
+		if (!foto.isEmpty()) {
+			String rutaabsoluta = "C://productos//recursos";
+			try {
+				byte[] bytesfoto = foto.getBytes();
+				Path rutacompleta = Paths.get(rutaabsoluta + "//" + foto.getOriginalFilename());
+				Files.write(rutacompleta, bytesfoto);
+				peltemp.setFoto(foto.getOriginalFilename());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return dao.save(peltemp);
+	}
+
+	@Override
+	@Transactional
+	public Peliculas create(Peliculas pel, MultipartFile foto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@Transactional
+	public List<Peliculas> findByTitulo(String titulo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

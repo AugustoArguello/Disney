@@ -1,0 +1,13 @@
+package springboot.disney.peliculas.Cliente;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@FeignClient(name = "personajes")
+public class Clientepersonajes {
+
+	@GetMapping("/movies")
+	public List<Personajes> findAll();
+}

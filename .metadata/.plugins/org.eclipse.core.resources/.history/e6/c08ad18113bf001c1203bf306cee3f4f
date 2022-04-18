@@ -1,0 +1,5 @@
+package springboot.disney.peliculas.Cliente;
+
+public interface ClientePersonajes {
+
+}

@@ -1,0 +1,13 @@
+package springboot.disney.eureka.server;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringbootDisneyEurekaServerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringbootDisneyEurekaServerApplication.class, args);
+	}
+
+}

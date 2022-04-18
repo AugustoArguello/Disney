@@ -1,0 +1,58 @@
+package springboot.disney.personaje.model.entity;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="personajes")
+public class Personajes implements Serializable {
+
+
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	private int id;
+	private String Nombre;
+	private int Edad;
+	private double Peso;
+	private String Historia;
+	private String Foto;
+	public String getNombre() {
+		return Nombre;
+	}
+	public void setNombre(String nombre) {
+		Nombre = nombre;
+	}
+	public int getEdad() {
+		return Edad;
+	}
+	public void setEdad(int edad) {
+		Edad = edad;
+	}
+	public double getPeso() {
+		return Peso;
+	}
+	public void setPeso(double peso) {
+		Peso = peso;
+	}
+	public String getHistoria() {
+		return Historia;
+	}
+	public void setHistoria(String historia) {
+		Historia = historia;
+	}
+	public String getFoto() {
+		return Foto;
+	}
+	public void setFoto(String foto) {
+		Foto = foto;
+	}
+	
+	
+	
+}

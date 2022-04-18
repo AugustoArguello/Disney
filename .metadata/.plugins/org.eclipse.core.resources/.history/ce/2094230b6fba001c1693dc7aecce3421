@@ -1,0 +1,5 @@
+package springboot.disney.personaje.model.Service;
+
+public interface Iservice {
+
+}

@@ -1,0 +1,39 @@
+package springboot.disney.personaje.model.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import springboot.disney.personaje.model.Service.Iservice;
+import springboot.disney.personaje.model.entity.Personajes;
+
+@Controller
+public class PersonajeController {
+	
+	@Autowired
+	private Iservice servicio;
+
+	@GetMapping("/characters")
+	public List<Personajes> findall(){
+		return null;
+		
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public List<Personajes> delete(@PathVariable int id){
+		
+		return servicio.delete(id);
+	}
+	
+	@PutMapping("/edit/{id}")
+	public Personajes edit(@PathVariable int id,@RequestBody Personajes person) {
+		
+		return servicio.edit(id, person);		
+	}
+}

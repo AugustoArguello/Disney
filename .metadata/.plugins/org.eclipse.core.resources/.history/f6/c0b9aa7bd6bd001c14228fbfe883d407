@@ -1,0 +1,60 @@
+package springboot.disney.personaje.model.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import springboot.disney.personaje.model.Dao.PersonajeDao;
+import springboot.disney.personaje.model.entity.Personajes;
+
+@Service
+public class Serviceimpl implements Iservice {
+
+	@Autowired
+	private PersonajeDao dao;
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Personajes> findall() {
+		List<Personajes> person = (List<Personajes>) dao.findAll();
+		
+		return person.stream().map(.filter(t -> new Personajes(t.getNombre(), t.getFoto())).collect(Collectors.toList()));
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Personajes> delete(int id) {
+		try {
+			dao.deleteById(id);
+			System.out.println("eliminado correctamente");
+		} catch (Exception e) {
+			System.out.println("no se ha encontrado al personaje");
+		}
+		
+		return (List<Personajes>) dao.findAll();
+}
+			
+
+	@Override
+	@Transactional
+	public Personajes edit(int id, Personajes person) {
+		Personajes personajetemp = dao.findById(id).orElse(null); 
+		personajetemp.setNombre(person.getNombre());
+		personajetemp.setEdad(person.getEdad());
+		personajetemp.setPeso(person.getPeso());
+		personajetemp.setHistoria(person.getHistoria());
+		personajetemp.setFoto(person.getFoto());
+		return dao.save(personajetemp);
+	}
+
+	@Override
+	@Transactional
+	public Personajes create(Personajes person) {
+	
+		return dao.save(person);
+	}
+
+}

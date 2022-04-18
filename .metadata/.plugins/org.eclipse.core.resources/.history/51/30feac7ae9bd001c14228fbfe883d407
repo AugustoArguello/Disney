@@ -1,0 +1,5 @@
+package springboot.disney.peliculas.models.Entity;
+
+public class Peliculas {
+
+}

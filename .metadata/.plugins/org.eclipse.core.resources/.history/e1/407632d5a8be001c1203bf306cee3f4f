@@ -1,0 +1,52 @@
+package springboot.disney.peliculas.models.Entity;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name ="peliculas")
+public class Peliculas implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String Titulo;
+	private Date FechaCreacion;
+	private int Calificacion;
+	public String getTitulo() {
+		return Titulo;
+	}
+	public void setTitulo(String titulo) {
+		Titulo = titulo;
+	}
+	public Date getFechaCreacion() {
+		return FechaCreacion;
+	}
+	public void setFechaCreacion(Date fechaCreacion) {
+		FechaCreacion = fechaCreacion;
+	}
+	public int getCalificacion() {
+		return Calificacion;
+	}
+	public void setCalificacion(int calificacion) {
+		Calificacion = calificacion;
+	}
+	public Peliculas(String titulo, Date fechaCreacion, int calificacion) {
+		Titulo = titulo;
+		FechaCreacion = fechaCreacion;
+		Calificacion = calificacion;
+	}
+	public Peliculas() {
+	
+	}
+	
+	
+}

@@ -1,0 +1,14 @@
+package springboot.disney.personaje.model.Service;
+
+import java.util.List;
+
+import springboot.disney.personaje.model.entity.Personajes;
+
+public interface Iservice {
+	
+	public List<Personajes> findall();
+	public Personajes delete(int id);
+	public Personajes edit(int id, Personajes person);
+	public Personajes create(Personajes person); 
+
+}
